@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple RPG Game</title>
+    <title>RPG Game with Pick-up Blocks</title>
     <style>
         body {
             margin: 0;
@@ -42,6 +42,39 @@
             }
         };
 
+        // Block object
+        const blocks = [];
+        const blockSize = 20;
+
+        // Function to create a random block
+        function createRandomBlock() {
+            const block = {
+                x: Math.random() * canvas.width,
+                y: Math.random() * (canvas.height / 2), // Place blocks in the top half of the canvas
+                width: blockSize,
+                height: blockSize,
+                color: 'green',
+                isPickedUp: false,
+                draw: function () {
+                    if (!this.isPickedUp) {
+                        ctx.fillStyle = this.color;
+                        ctx.fillRect(this.x, this.y, this.width, this.height);
+                    }
+                }
+            };
+            blocks.push(block);
+        }
+
+        // Function to check collision between two rectangles
+        function isCollision(rect1, rect2) {
+            return (
+                rect1.x < rect2.x + rect2.width &&
+                rect1.x + rect1.width > rect2.x &&
+                rect1.y < rect2.y + rect2.height &&
+                rect1.y + rect1.height > rect2.y
+            );
+        }
+
         // Handle keyboard input
         window.addEventListener('keydown', function (e) {
             switch (e.key) {
@@ -69,11 +102,27 @@
             ctx.fillStyle = '#00FF00'; // Green for grass
             ctx.fillRect(0, canvas.height / 2, canvas.width, canvas.height / 2);
 
+            // Draw and update blocks
+            for (const block of blocks) {
+                block.draw();
+
+                // Check for collision with player
+                if (!block.isPickedUp && isCollision(player, block)) {
+                    block.isPickedUp = true;
+                    // Add logic for what happens when a block is picked up
+                }
+            }
+
             // Draw the player
             player.draw();
 
             // Request the next animation frame
             requestAnimationFrame(update);
+        }
+
+        // Create initial random blocks
+        for (let i = 0; i < 5; i++) {
+            createRandomBlock();
         }
 
         // Start the game loop
