@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple HTML5 Game</title>
+    <title>Simple RPG Game</title>
     <style>
         body {
             margin: 0;
             overflow: hidden;
+            background-color: #87CEEB; /* Light Blue for sky */
         }
 
         canvas {
@@ -31,20 +32,42 @@
         const player = {
             x: canvas.width / 2,
             y: canvas.height / 2,
-            radius: 30,
-            color: 'blue',
+            width: 32,
+            height: 32,
+            color: 'red',
+            speed: 5,
             draw: function () {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
                 ctx.fillStyle = this.color;
-                ctx.fill();
-                ctx.closePath();
+                ctx.fillRect(this.x, this.y, this.width, this.height);
             }
         };
 
+        // Handle keyboard input
+        window.addEventListener('keydown', function (e) {
+            switch (e.key) {
+                case 'ArrowUp':
+                    player.y -= player.speed;
+                    break;
+                case 'ArrowDown':
+                    player.y += player.speed;
+                    break;
+                case 'ArrowLeft':
+                    player.x -= player.speed;
+                    break;
+                case 'ArrowRight':
+                    player.x += player.speed;
+                    break;
+            }
+        });
+
         // Update function
         function update() {
-            // Update game logic here
+            // Clear the canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw the background (grass)
+            ctx.fillStyle = '#00FF00'; // Green for grass
+            ctx.fillRect(0, canvas.height / 2, canvas.width, canvas.height / 2);
 
             // Draw the player
             player.draw();
