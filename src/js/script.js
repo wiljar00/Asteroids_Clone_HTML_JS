@@ -22,13 +22,13 @@ const player = {
 
 // Block object
 const blocks = [];
-const blockSize = 20;
+const blockSize = 40;
 
 // Function to create a random block
 function createRandomBlock() {
     const block = {
         x: Math.random() * canvas.width,
-        y: Math.random() * (canvas.height / 2), // Place blocks in the top half of the canvas
+        y: Math.random() * (canvas.height ), // Place blocks in the top half of the canvas /2
         width: blockSize,
         height: blockSize,
         color: 'green',
