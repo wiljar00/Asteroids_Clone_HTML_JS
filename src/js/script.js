@@ -12,7 +12,7 @@ const player = {
     y: canvas.height / 2,
     width: 32,
     height: 32,
-    color: 'red',
+    color: 'blue',
     speed: 5,
     draw: function () {
         ctx.fillStyle = this.color;
@@ -31,7 +31,7 @@ function createRandomBlock() {
         y: Math.random() * (canvas.height ), // Place blocks in the top half of the canvas /2
         width: blockSize,
         height: blockSize,
-        color: 'green',
+        color: 'red',
         isPickedUp: false,
         draw: function () {
             if (!this.isPickedUp) {
@@ -99,7 +99,7 @@ function update() {
 }
 
 // Create initial random blocks
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i < 10; i++) {
     createRandomBlock();
 }
 
