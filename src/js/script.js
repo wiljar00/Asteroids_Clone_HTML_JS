@@ -8,14 +8,14 @@ canvas.height = window.innerHeight;
 
 // Score
 const score = {
+    value: 0,  // Initialize the score value
     x: canvas.width / 4,
     y: canvas.height / 4,
-    width: 32,
-    height: 32,
     color: 'blue',
-    speed: 5,
     draw: function () {
-        "test"
+        ctx.fillStyle = this.color;
+        ctx.font = '24px Arial';
+        ctx.fillText('Score: ' + this.value, this.x, this.y);
     }
 };
 
@@ -93,7 +93,8 @@ function update() {
     ctx.fillStyle = '#00FF00'; // Green for grass
     ctx.fillRect(0, canvas.height / 2, canvas.width, canvas.height / 2);
 
-    score.draw();    
+    // Draw the score
+    score.draw();   
 
     // Draw and update blocks
     for (const block of blocks) {
