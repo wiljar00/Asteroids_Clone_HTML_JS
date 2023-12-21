@@ -104,7 +104,6 @@ function update() {
         if (!block.isPickedUp && isCollision(player, block)) {
             block.isPickedUp = true;
             score.value += 1;
-            // Add your logic for what happens when a block is picked up
         }
     }
 
