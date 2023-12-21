@@ -9,8 +9,8 @@ canvas.height = window.innerHeight;
 // Score
 const score = {
     value: 0,  // Initialize the score value
-    x: canvas.width / 4,
-    y: canvas.height / 4,
+    x: 20,
+    y: 50,
     color: 'blue',
     draw: function () {
         ctx.fillStyle = this.color;
@@ -103,6 +103,7 @@ function update() {
         // Check for collision with player
         if (!block.isPickedUp && isCollision(player, block)) {
             block.isPickedUp = true;
+            score.value += 1;
             // Add your logic for what happens when a block is picked up
         }
     }
