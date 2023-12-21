@@ -23,10 +23,12 @@ const score = {
 const player = {
     x: canvas.width / 2,
     y: canvas.height / 2,
+    targetX: canvas.width / 2,
+    targetY: canvas.height / 2,
     width: 32,
     height: 32,
     color: 'blue',
-    speed: 5,
+    speed: 0.1, // Adjust the speed for smoother movement
     draw: function () {
         ctx.fillStyle = this.color;
         ctx.fillRect(this.x, this.y, this.width, this.height);
@@ -96,6 +98,11 @@ function update() {
     // Draw the score
     score.draw();   
 
+    // Interpolate player movement for smoother motion
+    player.x += (player.targetX - player.x) * player.speed;
+    player.y += (player.targetY - player.y) * player.speed;
+    
+
     // Draw and update blocks
     for (const block of blocks) {
         block.draw();
@@ -126,4 +133,10 @@ update();
 window.addEventListener('resize', function () {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+});
+
+// Handle mouse move for smoother target movement
+window.addEventListener('mousemove', function (e) {
+    player.targetX = e.clientX - player.width / 2;
+    player.targetY = e.clientY - player.height / 2;
 });
