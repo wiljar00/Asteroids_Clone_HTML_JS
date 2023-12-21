@@ -6,6 +6,19 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+// Score
+const score = {
+    x: canvas.width / 4,
+    y: canvas.height / 4,
+    width: 32,
+    height: 32,
+    color: 'blue',
+    speed: 5,
+    draw: function () {
+        "test"
+    }
+};
+
 // Player object
 const player = {
     x: canvas.width / 2,
@@ -79,6 +92,8 @@ function update() {
     // Draw the background (grass)
     ctx.fillStyle = '#00FF00'; // Green for grass
     ctx.fillRect(0, canvas.height / 2, canvas.width, canvas.height / 2);
+
+    score.draw();    
 
     // Draw and update blocks
     for (const block of blocks) {
