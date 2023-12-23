@@ -106,8 +106,14 @@ function update() {
     for (const block of blocks) {
         block.draw();
         if (!block.isPickedUp && isCollision(player, block)) {
-            block.isPickedUp = true;
-            score.value += 1;
+            if (block.color === 'red') {
+                block.isPickedUp = true;
+                score.value += 1;
+            } else {
+                block.isPickedUp = true;
+                score.value -= 1;
+            }
+
         }
     }
 
