@@ -6,6 +6,8 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+const totalBlocks = 2;
+
 // Score
 const score = {
     value: 0,
@@ -217,8 +219,6 @@ function update() {
                     console.log(`Block: Color - ${block.color}, Picked Up - ${block.isPickedUp}`);
 
                 }
-
-
                 // Remove the projectile when it hits a block
                 projectiles.splice(i, 1);
 
@@ -249,7 +249,7 @@ function update() {
 }
 
 // Create initial random blocks
-for (let i = 0; i < 1; i++) {
+for (let i = 0; i < totalBlocks; i++) {
     createRandomBlock('red');
     createRandomBlock('yellow');
 }
