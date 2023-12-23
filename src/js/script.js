@@ -97,10 +97,18 @@ function checkWinCondition() {
     // Check if all red blocks are picked up
     const allRedBlocksPickedUp = blocks.every(block => block.color === 'red' && block.isPickedUp);
 
-    if (allRedBlocksPickedUp) {
-        // Display a message in the message area
-        messageArea.innerHTML = 'Congratulations! You picked up all red blocks!';
+    // Check if any yellow blocks are picked up
+    const anyYellowBlocksPickedUp = blocks.some(block => block.color === 'yellow' && block.isPickedUp);
+
+    if (allRedBlocksPickedUp && !anyYellowBlocksPickedUp) {
+        // Display a message in the message area for winning
+        messageArea.innerHTML = 'Congratulations! You picked up all red blocks and avoided the yellow ones!';
         messageArea.classList.add('success');
+        messageArea.style.display = 'block';
+    } else if (anyYellowBlocksPickedUp) {
+        // Display a message in the message area for losing
+        messageArea.innerHTML = 'Game Over! You picked up a yellow block!';
+        messageArea.classList.add('failure');
         messageArea.style.display = 'block';
     }
 }
