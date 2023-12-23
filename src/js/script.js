@@ -174,7 +174,9 @@ function update() {
         ctx.fill();
 
         // Check for collision with blocks
-        for (const block of blocks) {
+        for (let j = blocks.length - 1; j >= 0; j--) {
+            const block = blocks[j];
+
             if (!block.isPickedUp && isCollision(projectile, block)) {
                 block.isPickedUp = true;
                 score.value += 1;
@@ -195,6 +197,7 @@ function update() {
             projectiles.splice(i, 1);
         }
     }
+
 
     // Check if all blocks are picked up
     let allBlocksPickedUp = blocks.every(block => block.isPickedUp);
