@@ -81,14 +81,16 @@ function createRandomBlock(color) {
     blocks.push(block);
 }
 
-// Function to check collision between two rectangles
-function isCollision(rect1, rect2) {
-    return (
-        rect1.x < rect2.x + rect2.width &&
-        rect1.x + rect1.width > rect2.x &&
-        rect1.y < rect2.y + rect2.height &&
-        rect1.y + rect1.height > rect2.y
-    );
+// Function to check collision between a rectangle and a circle
+function isCollision(circle, rect) {
+    const closestX = Math.max(rect.x, Math.min(circle.x, rect.x + rect.width));
+    const closestY = Math.max(rect.y, Math.min(circle.y, rect.y + rect.height));
+
+    const distanceX = circle.x - closestX;
+    const distanceY = circle.y - closestY;
+    const distanceSquared = distanceX * distanceX + distanceY * distanceY;
+
+    return distanceSquared < (circle.radius * circle.radius);
 }
 
 const keyState = {};
