@@ -34,13 +34,13 @@ const player = {
 const blocks = [];
 const blockSize = 40;
 
-function createRandomBlock() {
+function createRandomBlock(color) {
     const block = {
         x: Math.random() * canvas.width,
         y: Math.random() * (canvas.height),
         width: blockSize,
         height: blockSize,
-        color: 'red',
+        color: color,
         isPickedUp: false,
         draw: function () {
             if (!this.isPickedUp) {
@@ -117,7 +117,8 @@ function update() {
 }
 
 for (let i = 0; i < 10; i++) {
-    createRandomBlock();
+    createRandomBlock('red');
+    createRandomBlock('yellow');
 }
 
 update();
