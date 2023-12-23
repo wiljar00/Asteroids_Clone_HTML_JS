@@ -79,8 +79,8 @@ window.addEventListener('mousemove', function (e) {
 function update() {
     if (!keyState['ArrowUp'] && !keyState['ArrowDown'] && !keyState['ArrowLeft'] && !keyState['ArrowRight']) {
         // If no arrow key is pressed, update the player position based on mouse input
-        player.x += (player.targetX - player.x) * 0.1;
-        player.y += (player.targetY - player.y) * 0.1;
+        // player.x += (player.targetX - player.x) * 0.1;
+        // player.y += (player.targetY - player.y) * 0.1;
     }
 
     // Handle arrow key input
