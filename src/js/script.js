@@ -93,6 +93,18 @@ function isCollision(circle, rect) {
     return distanceSquared < (circle.radius * circle.radius);
 }
 
+function checkWinCondition() {
+    // Check if all red blocks are picked up
+    const allRedBlocksPickedUp = blocks.every(block => block.color === 'red' && block.isPickedUp);
+
+    if (allRedBlocksPickedUp) {
+        // Display a message in the message area
+        messageArea.innerHTML = 'Congratulations! You picked up all red blocks!';
+        messageArea.classList.add('success');
+        messageArea.style.display = 'block';
+    }
+}
+
 const keyState = {};
 
 // Handle keyboard input
@@ -114,6 +126,7 @@ window.addEventListener('mousemove', function (e) {
     const dy = player.targetY - (player.y + player.height / 2);
     player.rotation = Math.atan2(dy, dx);
 });
+
 
 // Update function
 function update() {
@@ -180,8 +193,13 @@ function update() {
             const block = blocks[j];
 
             if (!block.isPickedUp && isCollision(projectile, block)) {
-                block.isPickedUp = true;
-                score.value += 1;
+                if (block.color === 'red') {
+                    block.isPickedUp = true;
+                    score.value += 1;
+                } else {
+                    block.isPickedUp = true;
+                    score.value -= 1;
+                }
 
                 // Remove the projectile when it hits a block
                 projectiles.splice(i, 1);
@@ -200,22 +218,14 @@ function update() {
         }
     }
 
-
-    // Check if all blocks are picked up
-    const allBlocksPickedUp = blocks.every(block => block.isPickedUp);
-
-    if (allBlocksPickedUp) {
-        // Display a message in the message area
-        messageArea.innerHTML = 'Congratulations! You Shot all blocks!';
-        messageArea.classList.add('success');
-        messageArea.style.display = 'block';
-    }
+    // Check win condition
+    checkWinCondition();
 
     requestAnimationFrame(update);
 }
 
 // Create initial random blocks
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 1; i++) {
     createRandomBlock('red');
     createRandomBlock('yellow');
 }
