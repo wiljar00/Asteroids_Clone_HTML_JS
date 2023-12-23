@@ -129,6 +129,7 @@ function update() {
     if (allBlocksPickedUp) {
         // Display a message in the message area
         messageArea.innerHTML = 'Congratulations! You picked up all blocks!';
+        messageArea.classList.add('success');
         messageArea.style.display = 'block';
     }
 

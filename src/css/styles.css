@@ -12,8 +12,16 @@ canvas {
     position: absolute;
     top: 10px;
     left: 10px;
-    padding: 10px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border: 1px solid #000;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    font-size: 24px;
+    border: 2px solid #ffcc00;
+    border-radius: 10px;
     display: none;
+}
+
+#messageArea.success {
+    background-color: #28a745;
+    border-color: #218838;
 }
