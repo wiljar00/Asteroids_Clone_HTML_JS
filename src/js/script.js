@@ -103,6 +103,8 @@ function update() {
 
     score.draw();
 
+    let allBlocksPickedUp = true; 
+
     for (const block of blocks) {
         block.draw();
         if (!block.isPickedUp && isCollision(player, block)) {
@@ -115,19 +117,31 @@ function update() {
             }
 
         }
+        if (!block.isPickedUp) {
+            allBlocksPickedUp = false;
+        }
     }
 
     player.draw();
 
+    if (allBlocksPickedUp) {
+        // Display a popup message
+        alert('Congratulations! You picked up all blocks!');
+    }
+
     requestAnimationFrame(update);
 }
 
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 1; i++) {
     createRandomBlock('red');
     createRandomBlock('yellow');
 }
 
 update();
+
+if (blocks.length === 0) {
+    console.log("win")
+}
 
 window.addEventListener('resize', function () {
     canvas.width = window.innerWidth;
