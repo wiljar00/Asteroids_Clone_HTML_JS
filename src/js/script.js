@@ -76,6 +76,8 @@ window.addEventListener('mousemove', function (e) {
     player.targetY = e.clientY - player.height / 2;
 });
 
+const messageArea = document.getElementById('messageArea');
+
 function update() {
     if (!keyState['ArrowUp'] && !keyState['ArrowDown'] && !keyState['ArrowLeft'] && !keyState['ArrowRight']) {
         // If no arrow key is pressed, update the player position based on mouse input
@@ -125,8 +127,9 @@ function update() {
     player.draw();
 
     if (allBlocksPickedUp) {
-        // Display a popup message
-        alert('Congratulations! You picked up all blocks!');
+        // Display a message in the message area
+        messageArea.innerHTML = 'Congratulations! You picked up all blocks!';
+        messageArea.style.display = 'block';
     }
 
     requestAnimationFrame(update);
