@@ -95,10 +95,14 @@ function isCollision(circle, rect) {
 
 function checkWinCondition() {
     // Check if all red blocks are picked up
-    const allRedBlocksPickedUp = blocks.every(block => block.color === 'red' && block.isPickedUp);
+    const allRedBlocksPickedUp = blocks.every(block => {
+        return block.color === 'red' && block.isPickedUp;
+    });
 
     // Check if any yellow blocks are picked up
-    const anyYellowBlocksPickedUp = blocks.some(block => block.color === 'yellow' && block.isPickedUp);
+    const anyYellowBlocksPickedUp = blocks.some(block => {
+        return block.color === 'yellow' && block.isPickedUp;
+    });
 
     if (allRedBlocksPickedUp && !anyYellowBlocksPickedUp) {
         // Display a message in the message area for winning
@@ -112,6 +116,7 @@ function checkWinCondition() {
         messageArea.style.display = 'block';
     }
 }
+
 
 const keyState = {};
 
@@ -204,13 +209,24 @@ function update() {
                 if (block.color === 'red') {
                     block.isPickedUp = true;
                     score.value += 1;
+                    console.log(`Block: Color - ${block.color}, Picked Up - ${block.isPickedUp}`);
+
                 } else {
                     block.isPickedUp = true;
                     score.value -= 1;
+                    console.log(`Block: Color - ${block.color}, Picked Up - ${block.isPickedUp}`);
+
                 }
+
 
                 // Remove the projectile when it hits a block
                 projectiles.splice(i, 1);
+
+                // Remove the block from the array
+                blocks.splice(j, 1);
+                
+                console.log(`Block: Color - ${block.color}, Picked Up - ${block.isPickedUp}`);
+            
                 break; // Break the inner loop, as the projectile can only hit one block
             }
         }
