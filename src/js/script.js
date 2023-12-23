@@ -202,11 +202,11 @@ function update() {
 
 
     // Check if all blocks are picked up
-    let allBlocksPickedUp = blocks.every(block => block.isPickedUp);
+    const allBlocksPickedUp = blocks.every(block => block.isPickedUp);
 
     if (allBlocksPickedUp) {
         // Display a message in the message area
-        messageArea.innerHTML = 'Congratulations! You picked up all blocks!';
+        messageArea.innerHTML = 'Congratulations! You Shot all blocks!';
         messageArea.classList.add('success');
         messageArea.style.display = 'block';
     }
