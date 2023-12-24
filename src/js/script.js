@@ -7,14 +7,14 @@ const backgroundImage = document.getElementById('backgroundImage');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const totalBlocks = 20;
+const totalBlocks = 10;
 
 // Score
 const score = {
     value: 0,
     x: 20,
     y: 20,
-    color: 'blue',
+    color: 'purple',
     draw: function () {
         ctx.fillStyle = this.color;
         ctx.font = '24px Arial';
@@ -28,9 +28,9 @@ const player = {
     y: canvas.height / 2,
     targetX: canvas.width / 2,
     targetY: canvas.height / 2,
-    width: 32,
-    height: 32,
-    color: 'blue',
+    width: 64,
+    height: 64,
+    image: document.getElementById('playerImage'), // Load the player image
     speed: 5,
     shootingCooldown: 0,
     rotation: 0,
@@ -40,7 +40,7 @@ const player = {
                 x: this.x + this.width / 2,
                 y: this.y + this.height / 2,
                 radius: 5,
-                color: 'red',
+                color: 'purple',
                 velocityX: Math.cos(this.rotation) * 8,
                 velocityY: Math.sin(this.rotation) * 8
             });
@@ -52,11 +52,17 @@ const player = {
         ctx.save(); // Save the current context state
         ctx.translate(this.x + this.width / 2, this.y + this.height / 2);
         ctx.rotate(this.rotation);
-        ctx.fillStyle = this.color;
-        ctx.fillRect(-this.width / 2, -this.height / 2, this.width, this.height);
+
+        // Reverse the image horizontally
+        ctx.scale(-1, 1);
+
+        // Draw the player image
+        ctx.drawImage(this.image, -this.width / 2, -this.height / 2, this.width, this.height);
+
         ctx.restore(); // Restore the context state
     }
 };
+
 
 // Projectile array
 const projectiles = [];
@@ -91,30 +97,30 @@ function isCollision(circle, rect) {
 
     const distanceX = circle.x - closestX;
     const distanceY = circle.y - closestY;
-    const distanceSquared = distanceX * distanceX + distanceY * distanceY;
+    const distanceSquagreen = distanceX * distanceX + distanceY * distanceY;
 
-    return distanceSquared < (circle.radius * circle.radius);
+    return distanceSquagreen < (circle.radius * circle.radius);
 }
 
 function checkWinCondition() {
-    // Check if all red blocks are picked up
-    const allRedBlocksPickedUp = blocks.every(block => {
-        return block.color === 'red' && block.isPickedUp;
+    // Check if all green blocks are picked up
+    const allgreenBlocksPickedUp = blocks.every(block => {
+        return block.color === 'green' && block.isPickedUp;
     });
 
-    // Check if any yellow blocks are picked up
-    const anyYellowBlocksPickedUp = blocks.some(block => {
-        return block.color === 'yellow' && block.isPickedUp;
+    // Check if any black blocks are picked up
+    const anyblackBlocksPickedUp = blocks.some(block => {
+        return block.color === 'black' && block.isPickedUp;
     });
 
-    if (allRedBlocksPickedUp && !anyYellowBlocksPickedUp) {
+    if (allgreenBlocksPickedUp && !anyblackBlocksPickedUp) {
         // Display a message in the message area for winning
-        messageArea.innerHTML = 'Congratulations! You picked up all red blocks and avoided the yellow ones!';
+        messageArea.innerHTML = 'Congratulations! You picked up all green blocks and avoided the black ones!';
         messageArea.classList.add('success');
         messageArea.style.display = 'block';
-    } else if (anyYellowBlocksPickedUp) {
+    } else if (anyblackBlocksPickedUp) {
         // Display a message in the message area for losing
-        messageArea.innerHTML = 'Game Over! You picked up a yellow block!';
+        messageArea.innerHTML = 'Game Over! You picked up a black block!';
         messageArea.classList.add('failure');
         messageArea.style.display = 'block';
     }
@@ -180,7 +186,7 @@ function update() {
 
         // Check for collision with player
         if (!block.isPickedUp && isCollision(player, block)) {
-            if (block.color === 'red') {
+            if (block.color === 'green') {
                 block.isPickedUp = true;
                 score.value += 1;
             } else {
@@ -212,7 +218,7 @@ function update() {
             const block = blocks[j];
 
             if (!block.isPickedUp && isCollision(projectile, block)) {
-                if (block.color === 'red') {
+                if (block.color === 'green') {
                     block.isPickedUp = true;
                     score.value += 1;
                     console.log(`Block: Color - ${block.color}, Picked Up - ${block.isPickedUp}`);
@@ -254,8 +260,8 @@ function update() {
 
 // Create initial random blocks
 for (let i = 0; i < totalBlocks; i++) {
-    createRandomBlock('red');
-    createRandomBlock('yellow');
+    createRandomBlock('green');
+    createRandomBlock('black');
 }
 
 update();
