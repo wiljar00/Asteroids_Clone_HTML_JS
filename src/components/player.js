@@ -43,3 +43,5 @@ Player.prototype.draw = function () {
 
     ctx.restore(); // Restore the context state
 };
+
+window.Player = Player;

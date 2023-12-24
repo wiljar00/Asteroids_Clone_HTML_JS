@@ -62,29 +62,7 @@ function checkWinCondition() {
 }
 
 
-const keyState = {};
 
-// Handle keyboard input
-window.addEventListener('keydown', function (e) {
-    console.log("key keydown listener")
-    keyState[e.key] = true;
-});
-
-window.addEventListener('keyup', function (e) {
-    console.log("key keyup listener")
-    keyState[e.key] = false;
-});
-
-// Handle mouse move for smoother target movement
-window.addEventListener('mousemove', function (e) {
-    player.targetX = e.clientX - player.width / 2;
-    player.targetY = e.clientY - player.height / 2;
-
-    // Update player rotation based on mouse position
-    const dx = player.targetX - (player.x + player.width / 2);
-    const dy = player.targetY - (player.y + player.height / 2);
-    player.rotation = Math.atan2(dy, dx);
-});
 
 // const startGameButton = document.getElementById('startGameButton');
 // startGameButton.addEventListener('click', function () {
@@ -104,47 +82,7 @@ window.addEventListener('mousemove', function (e) {
 //     document.getElementById('playerImage').style.display = 'block';
 // });
 
-// Update function
-function update() {
-
-    ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
-
-    // Handle shooting cooldown
-    if (player.shootingCooldown > 0) {
-        player.shootingCooldown--;
-    }
-
-    // Handle shooting
-    if (keyState[' ']) {
-        player.shoot();
-    }
-
-    // Draw the score
-    score.draw();
-
-    // Handle arrow key input for movement
-    if (keyState['W']) {
-        console.log("key w pressed")
-        player.y -= player.speed;
-    } else if (keyState['S']) {
-        console.log("key s pressed")
-        player.y += player.speed;
-    }
-
-    if (keyState['A']) {
-        console.log("key a pressed")
-        player.x -= player.speed;
-    } else if (keyState['D']) {
-        console.log("key d pressed")
-        player.x += player.speed;
-    }
-
-    // Update player rotation based on mouse position
-    const dx = player.targetX - (player.x + player.width / 2);
-    const dy = player.targetY - (player.y + player.height / 2);
-    player.rotation = Math.atan2(dy, dx);
-
-    // Draw and update blocks
+function drawBlocks() {
     for (const block of blocks) {
         block.draw();
 
@@ -159,11 +97,9 @@ function update() {
             }
         }
     }
+}
 
-    // Draw the player
-    player.draw();
-
-    // Draw and update projectiles
+function drawProjectiles() {
     for (let i = projectiles.length - 1; i >= 0; i--) {
         const projectile = projectiles[i];
 
@@ -215,6 +151,39 @@ function update() {
             projectiles.splice(i, 1);
         }
     }
+}
+
+function handleShooting() {
+    // Handle shooting cooldown
+    if (player.shootingCooldown > 0) {
+        player.shootingCooldown--;
+    }
+
+    // Handle shooting
+    if (keyState[' ']) {
+        player.shoot();
+    }
+}
+
+// Update function
+function update() {
+
+    ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+
+    // Handle shooting
+    handleShooting();
+
+    // Draw the score
+    score.draw();
+
+    // Draw and update blocks
+    drawBlocks()
+
+    // Draw the player
+    player.draw();
+
+    // Draw and update projectiles
+    drawProjectiles();
 
     // Check win condition
     checkWinCondition();

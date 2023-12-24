@@ -17,3 +17,5 @@ class Block {
 
     // Add other methods or properties as needed
 }
+
+window.Block = Block;
