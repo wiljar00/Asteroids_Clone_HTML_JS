@@ -28,8 +28,8 @@ const player = {
     y: canvas.height / 2,
     targetX: canvas.width / 2,
     targetY: canvas.height / 2,
-    width: 64,
-    height: 64,
+    width: 100,
+    height: 100,
     image: document.getElementById('playerImage'), // Load the player image
     speed: 5,
     shootingCooldown: 0,
@@ -53,8 +53,8 @@ const player = {
         ctx.translate(this.x + this.width / 2, this.y + this.height / 2);
         ctx.rotate(this.rotation);
 
-        // Reverse the image horizontally
-        ctx.scale(-1, 1);
+        // Rotate the image 90 degrees (in radians)
+        ctx.rotate(Math.PI / 2);
 
         // Draw the player image
         ctx.drawImage(this.image, -this.width / 2, -this.height / 2, this.width, this.height);
