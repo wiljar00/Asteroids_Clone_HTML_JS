@@ -8,7 +8,6 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 const totalBlocks = 10;
-const keyState = {};
 
 // Create a new instance of the Player class
 const player = new Player();
@@ -22,20 +21,7 @@ const blockSize = 40;
 
 // Function to create a random block
 function createRandomBlock(color) {
-    const block = {
-        x: Math.random() * canvas.width,
-        y: Math.random() * (canvas.height),
-        width: blockSize,
-        height: blockSize,
-        color: color,
-        isPickedUp: false,
-        draw: function () {
-            if (!this.isPickedUp) {
-                ctx.fillStyle = this.color;
-                ctx.fillRect(this.x, this.y, this.width, this.height);
-            }
-        }
-    };
+    const block = new Block(Math.random() * canvas.width, Math.random() * canvas.height, color);
     blocks.push(block);
 }
 
@@ -76,7 +62,7 @@ function checkWinCondition() {
 }
 
 
-
+const keyState = {};
 
 // Handle keyboard input
 window.addEventListener('keydown', function (e) {
