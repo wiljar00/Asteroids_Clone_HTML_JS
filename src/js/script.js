@@ -1,12 +1,13 @@
 // Get the canvas element
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
+const backgroundImage = document.getElementById('backgroundImage');
 
 // Set the canvas size
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const totalBlocks = 2;
+const totalBlocks = 20;
 
 // Score
 const score = {
@@ -145,6 +146,9 @@ window.addEventListener('mousemove', function (e) {
 
 // Update function
 function update() {
+
+    ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+
     // Handle shooting cooldown
     if (player.shootingCooldown > 0) {
         player.shootingCooldown--;
