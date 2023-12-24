@@ -8,19 +8,7 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 const totalBlocks = 10;
-
-// Score
-const score = {
-    value: 0,
-    x: 20,
-    y: 20,
-    color: 'purple',
-    draw: function () {
-        ctx.fillStyle = this.color;
-        ctx.font = '24px Arial';
-        ctx.fillText('Score: ' + this.value, this.x, this.y);
-    }
-};
+const keyState = {};
 
 // Player object
 const player = {
@@ -127,14 +115,16 @@ function checkWinCondition() {
 }
 
 
-const keyState = {};
+
 
 // Handle keyboard input
 window.addEventListener('keydown', function (e) {
+    console.log("key keydown listener")
     keyState[e.key] = true;
 });
 
 window.addEventListener('keyup', function (e) {
+    console.log("key keyup listener")
     keyState[e.key] = false;
 });
 
@@ -149,23 +139,23 @@ window.addEventListener('mousemove', function (e) {
     player.rotation = Math.atan2(dy, dx);
 });
 
-const startGameButton = document.getElementById('startGameButton');
-startGameButton.addEventListener('click', function () {
-    const backgroundMusic = document.getElementById('backgroundMusic');
+// const startGameButton = document.getElementById('startGameButton');
+// startGameButton.addEventListener('click', function () {
+    // const backgroundMusic = document.getElementById('backgroundMusic');
 
     // Unmute the audio
-    backgroundMusic.muted = false;
+    // backgroundMusic.muted = false;
 
     // Additional code to start the game can go here
 
     // Hide the button after the game starts
-    startGameButton.style.display = 'none';
+    // startGameButton.style.display = 'none';
 
     // Show the canvas and other game elements
-    canvas.style.display = 'block';
-    document.getElementById('backgroundImage').style.display = 'block';
-    document.getElementById('playerImage').style.display = 'block';
-});
+//     canvas.style.display = 'block';
+//     document.getElementById('backgroundImage').style.display = 'block';
+//     document.getElementById('playerImage').style.display = 'block';
+// });
 
 // Update function
 function update() {
@@ -182,15 +172,25 @@ function update() {
         player.shoot();
     }
 
-    // Clear the canvas
-    // ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Draw the background (grass)
-    // ctx.fillStyle = '#00FF00'; // Green for grass
-    // ctx.fillRect(0, canvas.height / 2, canvas.width, canvas.height / 2);
-
     // Draw the score
     score.draw();
+
+    // Handle arrow key input for movement
+    if (keyState['W']) {
+        console.log("key w pressed")
+        player.y -= player.speed;
+    } else if (keyState['S']) {
+        console.log("key s pressed")
+        player.y += player.speed;
+    }
+
+    if (keyState['A']) {
+        console.log("key a pressed")
+        player.x -= player.speed;
+    } else if (keyState['D']) {
+        console.log("key d pressed")
+        player.x += player.speed;
+    }
 
     // Update player rotation based on mouse position
     const dx = player.targetX - (player.x + player.width / 2);
