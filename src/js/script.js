@@ -160,11 +160,11 @@ function update() {
     }
 
     // Clear the canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Draw the background (grass)
-    ctx.fillStyle = '#00FF00'; // Green for grass
-    ctx.fillRect(0, canvas.height / 2, canvas.width, canvas.height / 2);
+    // ctx.fillStyle = '#00FF00'; // Green for grass
+    // ctx.fillRect(0, canvas.height / 2, canvas.width, canvas.height / 2);
 
     // Draw the score
     score.draw();
