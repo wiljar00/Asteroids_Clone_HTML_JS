@@ -149,6 +149,23 @@ window.addEventListener('mousemove', function (e) {
     player.rotation = Math.atan2(dy, dx);
 });
 
+const startGameButton = document.getElementById('startGameButton');
+startGameButton.addEventListener('click', function () {
+    const backgroundMusic = document.getElementById('backgroundMusic');
+
+    // Unmute the audio
+    backgroundMusic.muted = false;
+
+    // Additional code to start the game can go here
+
+    // Hide the button after the game starts
+    startGameButton.style.display = 'none';
+
+    // Show the canvas and other game elements
+    canvas.style.display = 'block';
+    document.getElementById('backgroundImage').style.display = 'block';
+    document.getElementById('playerImage').style.display = 'block';
+});
 
 // Update function
 function update() {
