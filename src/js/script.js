@@ -10,47 +10,8 @@ canvas.height = window.innerHeight;
 const totalBlocks = 10;
 const keyState = {};
 
-// Player object
-const player = {
-    x: canvas.width / 2,
-    y: canvas.height / 2,
-    targetX: canvas.width / 2,
-    targetY: canvas.height / 2,
-    width: 100,
-    height: 100,
-    image: document.getElementById('playerImage'), // Load the player image
-    speed: 5,
-    shootingCooldown: 0,
-    rotation: 0,
-    shoot: function () {
-        if (this.shootingCooldown <= 0) {
-            projectiles.push({
-                x: this.x + this.width / 2,
-                y: this.y + this.height / 2,
-                radius: 5,
-                color: 'purple',
-                velocityX: Math.cos(this.rotation) * 8,
-                velocityY: Math.sin(this.rotation) * 8
-            });
-
-            this.shootingCooldown = 10; // Adjust the cooldown time
-        }
-    },
-    draw: function () {
-        ctx.save(); // Save the current context state
-        ctx.translate(this.x + this.width / 2, this.y + this.height / 2);
-        ctx.rotate(this.rotation);
-
-        // Rotate the image 90 degrees (in radians)
-        ctx.rotate(Math.PI / 2);
-
-        // Draw the player image
-        ctx.drawImage(this.image, -this.width / 2, -this.height / 2, this.width, this.height);
-
-        ctx.restore(); // Restore the context state
-    }
-};
-
+// Create a new instance of the Player class
+const player = new Player();
 
 // Projectile array
 const projectiles = [];
