@@ -1,31 +1,23 @@
-// Get the canvas element
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const backgroundImage = document.getElementById('backgroundImage');
 
-// Set the canvas size
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight - 48;
 
-// Create a new instance of the Player class
 const player = new Player();
 
-// Projectile array
+// Projectiles
 const projectiles = [];
-
-// Block object
 const blocks = [];
-// const blockSize = 40;
 
-// Function to create a random block
 function createRandomBlock() {
-    const block = new Block(Math.random() * (canvas.width - settings.blockSize), 
+    const block = new Enemy(Math.random() * (canvas.width - settings.blockSize), 
                             Math.random() * (canvas.height - settings.blockSize), 
                             settings.blockColor);
     blocks.push(block);
 }
 
-// Update the score display in the navbar
 function updateScoreDisplay() {
     const scoreElement = document.getElementById('score');
     if (scoreElement) {
@@ -33,7 +25,6 @@ function updateScoreDisplay() {
     }
 }
 
-// Function to check collision between a rectangle and a circle
 function isCollision(circle, rect) {
     const closestX = Math.max(rect.x, Math.min(circle.x, rect.x + rect.width));
     const closestY = Math.max(rect.y, Math.min(circle.y, rect.y + rect.height));
@@ -45,26 +36,27 @@ function isCollision(circle, rect) {
     return distanceSquagreen < (circle.radius * circle.radius);
 }
 
+function showResetButton() {
+    // TODO
+}
+
 function checkWinCondition() {
-    // Check if all blocks are picked up
     const allBlocksPickedUp = blocks.every(block => {
         return block.isPickedUp;
     });
 
     if (allBlocksPickedUp) {
-        // Display a message in the message area for winning
         messageArea.innerHTML = 'Congratulations! You cleared all the enemies!';
         messageArea.classList.add('success');
         messageArea.style.display = 'block';
+        // showResetButton();
     } 
 }
 
-// Add the changeBackground function here
 function changeBackground() {
     var select = document.getElementById("backgroundSelect");
     var selectedOption = select.options[select.selectedIndex].value;
 
-    // Update the background image source based on the selected option
     if (selectedOption === "space") {
         document.getElementById("backgroundImage").src = "../src/assets/backgrounds/space.jpg";
     } else if (selectedOption === "cloudy_sky") {
