@@ -39,7 +39,7 @@ function isCollision(circle, rect) {
 }
 
 function checkWinCondition() {
-    // Check if all green blocks are picked up
+    // Check if all blocks are picked up
     const allBlocksPickedUp = blocks.every(block => {
         return block.isPickedUp;
     });
@@ -52,24 +52,24 @@ function checkWinCondition() {
     } 
 }
 
-    // Add the changeBackground function here
-    function changeBackground() {
-        var select = document.getElementById("backgroundSelect");
-        var selectedOption = select.options[select.selectedIndex].value;
+// Add the changeBackground function here
+function changeBackground() {
+    var select = document.getElementById("backgroundSelect");
+    var selectedOption = select.options[select.selectedIndex].value;
 
-        // Update the background image source based on the selected option
-        if (selectedOption === "space") {
-            document.getElementById("backgroundImage").src = "../src/assets/backgrounds/space.jpg";
-        } else if (selectedOption === "cloudy_sky") {
-            document.getElementById("backgroundImage").src = "../src/assets/backgrounds/cloudy_sky.jpg";
-        } else if (selectedOption === "beach") {
-            document.getElementById("backgroundImage").src = "../src/assets/backgrounds/beach.jpg";
-        } else if (selectedOption === "city") {
-            document.getElementById("backgroundImage").src = "../src/assets/backgrounds/city.jpg";
-        } else if (selectedOption === "grassy_fields") {
-            document.getElementById("backgroundImage").src = "../src/assets/backgrounds/grassy_fields.jpg";
-        }
+    // Update the background image source based on the selected option
+    if (selectedOption === "space") {
+        document.getElementById("backgroundImage").src = "../src/assets/backgrounds/space.jpg";
+    } else if (selectedOption === "cloudy_sky") {
+        document.getElementById("backgroundImage").src = "../src/assets/backgrounds/cloudy_sky.jpg";
+    } else if (selectedOption === "beach") {
+        document.getElementById("backgroundImage").src = "../src/assets/backgrounds/beach.jpg";
+    } else if (selectedOption === "city") {
+        document.getElementById("backgroundImage").src = "../src/assets/backgrounds/city.jpg";
+    } else if (selectedOption === "grassy_fields") {
+        document.getElementById("backgroundImage").src = "../src/assets/backgrounds/grassy_fields.jpg";
     }
+}
 
 
 
@@ -97,13 +97,6 @@ function drawBlocks() {
 
         // Check for collision with player
         if (!block.isPickedUp && isCollision(player, block)) {
-            // if (block.color === 'green') {
-            //     block.isPickedUp = true;
-            //     score.value += 1;
-            // } else {
-            //     block.isPickedUp = true;
-            //     score.value -= 1;
-            // }
             block.isPickedUp = true;
             score.value += 1;
         }
@@ -129,17 +122,6 @@ function drawProjectiles() {
             const block = blocks[j];
 
             if (!block.isPickedUp && isCollision(projectile, block)) {
-                // if (block.color === 'green') {
-                //     block.isPickedUp = true;
-                //     score.value += 1;
-                //     console.log(`Block: Color - ${block.color}, Picked Up - ${block.isPickedUp}`);
-
-                // } else {
-                //     block.isPickedUp = true;
-                //     score.value -= 1;
-                //     console.log(`Block: Color - ${block.color}, Picked Up - ${block.isPickedUp}`);
-
-                // }
                 block.isPickedUp = true;
                 score.value += 1;
                 // Remove the projectile when it hits a block
