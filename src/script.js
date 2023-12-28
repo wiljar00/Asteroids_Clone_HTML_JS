@@ -160,16 +160,17 @@ function handleShooting() {
     }
 }
 
+function setupUI() {
+    ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+    score.draw();
+}
+
 // Update function
 function update() {
-
-    ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
-
+    setupUI();
+    
     // Handle shooting
     handleShooting();
-
-    // Draw the score
-    score.draw();
 
     // Draw and update blocks
     drawBlocks()
