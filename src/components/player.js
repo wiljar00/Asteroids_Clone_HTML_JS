@@ -1,5 +1,8 @@
 // player.js
 
+const bullet_speed = 15;
+const bullet_size = 10;
+
 // Player definition
 function Player() {
     this.x = canvas.width / 2;
@@ -8,7 +11,7 @@ function Player() {
     this.targetY = canvas.height / 2;
     this.width = 100;
     this.height = 100;
-    this.image = document.getElementById('playerImage'); // Load the player image
+    this.image = document.getElementById('playerImage'); 
     this.speed = 5;
     this.shootingCooldown = 0;
     this.rotation = 0;
@@ -20,10 +23,10 @@ Player.prototype.shoot = function () {
         projectiles.push({
             x: this.x + this.width / 2,
             y: this.y + this.height / 2,
-            radius: 5,
+            radius: bullet_size,
             color: 'yellow',
-            velocityX: Math.cos(this.rotation) * 8,
-            velocityY: Math.sin(this.rotation) * 8
+            velocityX: Math.cos(this.rotation) * bullet_speed,
+            velocityY: Math.sin(this.rotation) * bullet_speed
         });
 
         this.shootingCooldown = 10; // Adjust the cooldown time
