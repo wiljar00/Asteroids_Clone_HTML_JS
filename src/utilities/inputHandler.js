@@ -1,6 +1,6 @@
 const keyState = {};
-const acceleration = 0.2; // Adjust the acceleration value as needed
-const friction = 0.1; // Adjust the friction value as needed
+const acceleration = 0.2; 
+const friction = 0.1; 
 
 function handleKeyDown(e) {
     keyState[e.key] = true;
@@ -63,4 +63,9 @@ window.addEventListener('keydown', function (e) {
 
 window.addEventListener('keyup', function (e) {
     handleKeyUp(e);
+});
+
+window.addEventListener('resize', function () {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 });

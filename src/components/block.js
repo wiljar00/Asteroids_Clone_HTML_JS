@@ -2,8 +2,8 @@ class Block {
     constructor(x, y, color) {
         this.x = x;
         this.y = y;
-        this.width = blockSize;
-        this.height = blockSize;
+        this.width = settings.blockSize;
+        this.height = settings.blockSize;
         this.color = color;
         this.isPickedUp = false;
     }

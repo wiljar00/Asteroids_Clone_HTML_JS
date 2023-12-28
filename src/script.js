@@ -5,10 +5,7 @@ const backgroundImage = document.getElementById('backgroundImage');
 
 // Set the canvas size
 canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-const totalBlocks = 10;
-const blockColor = 'red'
+canvas.height = window.innerHeight - 48;
 
 // Create a new instance of the Player class
 const player = new Player();
@@ -18,11 +15,13 @@ const projectiles = [];
 
 // Block object
 const blocks = [];
-const blockSize = 40;
+// const blockSize = 40;
 
 // Function to create a random block
-function createRandomBlock(color) {
-    const block = new Block(Math.random() * canvas.width, Math.random() * canvas.height, color);
+function createRandomBlock() {
+    const block = new Block(Math.random() * (canvas.width - settings.blockSize), 
+                            Math.random() * (canvas.height - settings.blockSize), 
+                            settings.blockColor);
     blocks.push(block);
 }
 
@@ -114,8 +113,8 @@ function drawEnemies() {
 
 function initEnemies() {
     // Create initial random blocks
-    for (let i = 0; i < totalBlocks; i++) {
-        createRandomBlock(blockColor);
+    for (let i = 0; i < settings.totalBlocks; i++) {
+        createRandomBlock();
     }
 }
 
@@ -187,7 +186,9 @@ function drawPlayer() {
     handleShooting();
 }
 
-// Update function
+//  #########################################   //
+//              Main Game Loop                  //
+//  #########################################   //
 function update() {
     setupUI();
 
@@ -198,10 +199,8 @@ function update() {
     requestAnimationFrame(update);
 }
 
+//  #########################################   //
+//              Start Game                      //
+//  #########################################   //
 initEnemies()
 update();
-
-window.addEventListener('resize', function () {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-});
