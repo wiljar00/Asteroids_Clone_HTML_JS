@@ -67,12 +67,17 @@ function checkWinCondition() {
         var selectedOption = select.options[select.selectedIndex].value;
 
         // Update the background image source based on the selected option
-        if (selectedOption === "cloudy_sky") {
-            document.getElementById("backgroundImage").src = "../src/assets/backgrounds/cloudy_sky.jpg";
-        } else if (selectedOption === "space") {
+        if (selectedOption === "space") {
             document.getElementById("backgroundImage").src = "../src/assets/backgrounds/space.jpg";
+        } else if (selectedOption === "cloudy_sky") {
+            document.getElementById("backgroundImage").src = "../src/assets/backgrounds/cloudy_sky.jpg";
+        } else if (selectedOption === "beach") {
+            document.getElementById("backgroundImage").src = "../src/assets/backgrounds/beach.jpg";
+        } else if (selectedOption === "city") {
+            document.getElementById("backgroundImage").src = "../src/assets/backgrounds/city.jpg";
+        } else if (selectedOption === "grassy_fields") {
+            document.getElementById("backgroundImage").src = "../src/assets/backgrounds/grassy_fields.jpg";
         }
-        // Add more conditions for other background options as needed
     }
 
 
