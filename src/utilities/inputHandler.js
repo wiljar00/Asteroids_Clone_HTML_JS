@@ -1,7 +1,6 @@
-// Your input handling code here
-
-// Example:
 const keyState = {};
+const acceleration = 0.2; // Adjust the acceleration value as needed
+const friction = 0.1; // Adjust the friction value as needed
 
 function handleKeyDown(e) {
     keyState[e.key] = true;
@@ -35,6 +34,14 @@ function handleKeyInput(e, player) {
             player.x += player.speed;
             break;
     }
+
+    // Apply friction to slow down the player gradually
+    // player.velocityX *= 1 - friction;
+    // player.velocityY *= 1 - friction;
+
+    // Update the player's position based on velocity
+    // player.x += player.velocityX;
+    // player.y += player.velocityY;
 }
 
 // Export relevant variables and functions
