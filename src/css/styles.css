@@ -5,6 +5,16 @@ body {
 
 canvas {
     display: block;
+    /* margin: 0 auto; */
+}
+
+#gameFrame {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    border: 5px solid #333;
+    margin-bottom: 100px;
+    box-sizing: border-box;
 }
 
 #messageArea {
