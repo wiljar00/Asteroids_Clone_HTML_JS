@@ -61,6 +61,19 @@ function checkWinCondition() {
     }
 }
 
+    // Add the changeBackground function here
+    function changeBackground() {
+        var select = document.getElementById("backgroundSelect");
+        var selectedOption = select.options[select.selectedIndex].value;
+
+        // Update the background image source based on the selected option
+        if (selectedOption === "cloudy_sky") {
+            document.getElementById("backgroundImage").src = "../src/assets/backgrounds/cloudy_sky.jpg";
+        } else if (selectedOption === "space") {
+            document.getElementById("backgroundImage").src = "../src/assets/backgrounds/space.jpg";
+        }
+        // Add more conditions for other background options as needed
+    }
 
 
 
