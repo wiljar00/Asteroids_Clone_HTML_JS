@@ -21,7 +21,7 @@ Player.prototype.shoot = function () {
             x: this.x + this.width / 2,
             y: this.y + this.height / 2,
             radius: 5,
-            color: 'purple',
+            color: 'yellow',
             velocityX: Math.cos(this.rotation) * 8,
             velocityY: Math.sin(this.rotation) * 8
         });

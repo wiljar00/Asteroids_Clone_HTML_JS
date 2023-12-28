@@ -4,7 +4,7 @@ window.score = {
     value: 0,
     x: 20,
     y: 20,
-    color: 'purple',
+    color: 'White',
     draw: function () {
         ctx.fillStyle = this.color;
         ctx.font = '24px Arial';
