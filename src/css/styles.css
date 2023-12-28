@@ -36,7 +36,6 @@ select {
     font-size: 16px;
 }
 
-/* New styles for positioning the dropdown container */
 #backgroundSelectContainer {
     position: absolute;
     top: 10px;
@@ -49,5 +48,5 @@ select {
     background-color: #333;
     color: #fff;
     padding: 10px;
-    text-align: center;
+    text-align: justify;
 }

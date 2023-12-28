@@ -9,21 +9,26 @@
 <body>
 
     <div id="navbar">
-        <span>Score: <span id="score">0</span></span>
+        <span>
+            Score: 
+            <span id="score">0</span>
+        </span>
+
+        <div id="backgroundSelectContainer">
+            <label for="backgroundSelect">Select Background:</label>
+            <select id="backgroundSelect" onchange="changeBackground()">
+                <option value="space">Space</option>
+                <option value="cloudy_sky">Cloudy Sky</option>
+                <option value="beach">Beach</option>
+                <option value="city">City</option>
+                <option value="grassy_fields">Grassy Fields</option>
+            </select>
+        </div>
     </div>
 
     <canvas id="gameCanvas"></canvas>
 
-    <div id="backgroundSelectContainer">
-        <label for="backgroundSelect">Select Background:</label>
-        <select id="backgroundSelect" onchange="changeBackground()">
-            <option value="space">Space</option>
-            <option value="cloudy_sky">Cloudy Sky</option>
-            <option value="beach">Beach</option>
-            <option value="city">City</option>
-            <option value="grassy_fields">Grassy Fields</option>
-        </select>
-    </div>
+
 
 <!-- 
     <audio id="backgroundMusic" loop muted>
@@ -35,7 +40,6 @@
 -->
 
     <div id="messageArea"></div>
-    <!-- Initial background image:  -->
     <img id="backgroundImage" src="../src/assets//backgrounds/space.jpg" alt="Space" style="display: none;">
     <img id="playerImage" src="../src/assets/spaceship.png" alt="Player" style="display: none;">
 
