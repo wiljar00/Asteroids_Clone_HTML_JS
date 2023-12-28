@@ -26,6 +26,14 @@ function createRandomBlock(color) {
     blocks.push(block);
 }
 
+// Update the score display in the navbar
+function updateScoreDisplay() {
+    const scoreElement = document.getElementById('score');
+    if (scoreElement) {
+        scoreElement.textContent = score.value;
+    }
+}
+
 // Function to check collision between a rectangle and a circle
 function isCollision(circle, rect) {
     const closestX = Math.max(rect.x, Math.min(circle.x, rect.x + rect.width));
@@ -99,6 +107,7 @@ function drawEnemies() {
         if (!block.isPickedUp && isCollision(player, block)) {
             block.isPickedUp = true;
             score.value += 1;
+            updateScoreDisplay();
         }
     }
 }
@@ -131,6 +140,7 @@ function drawProjectiles() {
             if (!block.isPickedUp && isCollision(projectile, block)) {
                 block.isPickedUp = true;
                 score.value += 1;
+                updateScoreDisplay();
                 // Remove the projectile when it hits a block
                 projectiles.splice(i, 1);
 
@@ -169,7 +179,6 @@ function handleShooting() {
 
 function setupUI() {
     ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
-    score.draw();
 }
 
 function drawPlayer() {
