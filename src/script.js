@@ -8,6 +8,7 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 const totalBlocks = 10;
+const blockColor = 'red'
 
 // Create a new instance of the Player class
 const player = new Player();
@@ -39,26 +40,16 @@ function isCollision(circle, rect) {
 
 function checkWinCondition() {
     // Check if all green blocks are picked up
-    const allgreenBlocksPickedUp = blocks.every(block => {
-        return block.color === 'green' && block.isPickedUp;
+    const allBlocksPickedUp = blocks.every(block => {
+        return block.isPickedUp;
     });
 
-    // Check if any black blocks are picked up
-    const anyblackBlocksPickedUp = blocks.some(block => {
-        return block.color === 'black' && block.isPickedUp;
-    });
-
-    if (allgreenBlocksPickedUp && !anyblackBlocksPickedUp) {
+    if (allBlocksPickedUp) {
         // Display a message in the message area for winning
-        messageArea.innerHTML = 'Congratulations! You picked up all green blocks and avoided the black ones!';
+        messageArea.innerHTML = 'Congratulations! You cleared all the enemies!';
         messageArea.classList.add('success');
         messageArea.style.display = 'block';
-    } else if (anyblackBlocksPickedUp) {
-        // Display a message in the message area for losing
-        messageArea.innerHTML = 'Game Over! You picked up a black block!';
-        messageArea.classList.add('failure');
-        messageArea.style.display = 'block';
-    }
+    } 
 }
 
     // Add the changeBackground function here
@@ -106,13 +97,15 @@ function drawBlocks() {
 
         // Check for collision with player
         if (!block.isPickedUp && isCollision(player, block)) {
-            if (block.color === 'green') {
-                block.isPickedUp = true;
-                score.value += 1;
-            } else {
-                block.isPickedUp = true;
-                score.value -= 1;
-            }
+            // if (block.color === 'green') {
+            //     block.isPickedUp = true;
+            //     score.value += 1;
+            // } else {
+            //     block.isPickedUp = true;
+            //     score.value -= 1;
+            // }
+            block.isPickedUp = true;
+            score.value += 1;
         }
     }
 }
@@ -136,17 +129,19 @@ function drawProjectiles() {
             const block = blocks[j];
 
             if (!block.isPickedUp && isCollision(projectile, block)) {
-                if (block.color === 'green') {
-                    block.isPickedUp = true;
-                    score.value += 1;
-                    console.log(`Block: Color - ${block.color}, Picked Up - ${block.isPickedUp}`);
+                // if (block.color === 'green') {
+                //     block.isPickedUp = true;
+                //     score.value += 1;
+                //     console.log(`Block: Color - ${block.color}, Picked Up - ${block.isPickedUp}`);
 
-                } else {
-                    block.isPickedUp = true;
-                    score.value -= 1;
-                    console.log(`Block: Color - ${block.color}, Picked Up - ${block.isPickedUp}`);
+                // } else {
+                //     block.isPickedUp = true;
+                //     score.value -= 1;
+                //     console.log(`Block: Color - ${block.color}, Picked Up - ${block.isPickedUp}`);
 
-                }
+                // }
+                block.isPickedUp = true;
+                score.value += 1;
                 // Remove the projectile when it hits a block
                 projectiles.splice(i, 1);
 
@@ -211,8 +206,7 @@ function update() {
 
 // Create initial random blocks
 for (let i = 0; i < totalBlocks; i++) {
-    createRandomBlock('green');
-    createRandomBlock('black');
+    createRandomBlock(blockColor);
 }
 
 update();
