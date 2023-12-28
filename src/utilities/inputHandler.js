@@ -22,16 +22,16 @@ function handleMouseMove(e, player) {
 
 function handleKeyInput(e, player) {
     switch (e.key) {
-        case 'W':
+        case 'w':
             player.y -= player.speed;
             break;
-        case 'A':
+        case 'a':
             player.x -= player.speed;
             break;
-        case 'S':
+        case 's':
             player.y += player.speed;
             break;
-        case 'D':
+        case 'd':
             player.x += player.speed;
             break;
     }
