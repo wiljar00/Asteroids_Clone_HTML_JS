@@ -91,7 +91,7 @@ function changeBackground() {
 //     document.getElementById('playerImage').style.display = 'block';
 // });
 
-function drawBlocks() {
+function drawEnemies() {
     for (const block of blocks) {
         block.draw();
 
@@ -100,6 +100,13 @@ function drawBlocks() {
             block.isPickedUp = true;
             score.value += 1;
         }
+    }
+}
+
+function initEnemies() {
+    // Create initial random blocks
+    for (let i = 0; i < totalBlocks; i++) {
+        createRandomBlock(blockColor);
     }
 }
 
@@ -165,33 +172,24 @@ function setupUI() {
     score.draw();
 }
 
+function drawPlayer() {
+    player.draw();
+    drawProjectiles();
+    handleShooting();
+}
+
 // Update function
 function update() {
     setupUI();
-    
-    // Handle shooting
-    handleShooting();
 
-    // Draw and update blocks
-    drawBlocks()
+    drawPlayer();
+    drawEnemies();
 
-    // Draw the player
-    player.draw();
-
-    // Draw and update projectiles
-    drawProjectiles();
-
-    // Check win condition
     checkWinCondition();
-
     requestAnimationFrame(update);
 }
 
-// Create initial random blocks
-for (let i = 0; i < totalBlocks; i++) {
-    createRandomBlock(blockColor);
-}
-
+initEnemies()
 update();
 
 window.addEventListener('resize', function () {
