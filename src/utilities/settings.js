@@ -1,6 +1,7 @@
 window.settings = {
     totalEnemies: 10,
     enemyColor: 'red',
-    enemySize: 40
+    enemySize: 75, 
+    enemyImagePath: '../src/assets/enemy.png'
 }
 
