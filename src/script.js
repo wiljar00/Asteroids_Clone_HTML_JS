@@ -155,18 +155,6 @@ function drawProjectiles() {
     }
 }
 
-function handleShooting() {
-    // Handle shooting cooldown
-    if (player.shootingCooldown > 0) {
-        player.shootingCooldown--;
-    }
-
-    // Handle shooting
-    if (keyState[' ']) {
-        player.shoot();
-    }
-}
-
 function setupUI() {
     ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 }
@@ -174,7 +162,9 @@ function setupUI() {
 function drawPlayer() {
     player.draw();
     drawProjectiles();
-    handleShooting();
+    if (player.shootingCooldown > 0) {
+        player.shootingCooldown--;
+    }
 }
 
 //  #########################################   //

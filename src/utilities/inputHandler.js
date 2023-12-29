@@ -33,6 +33,9 @@ function handleKeyInput(e, player) {
         case 'd':
             player.x += player.speed;
             break;
+        case ' ':
+            player.shoot();
+            break;
     }
 
     // Apply friction to slow down the player gradually
