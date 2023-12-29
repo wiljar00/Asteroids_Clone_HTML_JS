@@ -3,11 +3,9 @@ const ctx = canvas.getContext('2d');
 const backgroundImage = document.getElementById('backgroundImage');
 
 canvas.width = window.innerWidth;
-canvas.height = window.innerHeight - 48;
+canvas.height = window.innerHeight - 45; // TODO: why does the height need adjustment? Maybe image size?
 
 const player = new Player();
-
-// Projectiles
 const projectiles = [];
 const enemies = [];
 
