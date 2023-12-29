@@ -1,6 +1,6 @@
 window.settings = {
-    totalBlocks: 10,
-    blockColor: 'red',
-    blockSize: 40
+    totalEnemies: 10,
+    enemyColor: 'red',
+    enemySize: 40
 }
 

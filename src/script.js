@@ -9,13 +9,13 @@ const player = new Player();
 
 // Projectiles
 const projectiles = [];
-const blocks = [];
+const enemies = [];
 
-function createRandomBlock() {
-    const block = new Enemy(Math.random() * (canvas.width - settings.blockSize), 
-                            Math.random() * (canvas.height - settings.blockSize), 
-                            settings.blockColor);
-    blocks.push(block);
+function createRandomEnemies() {
+    const enemy = new Enemy(Math.random() * (canvas.width - settings.enemySize), 
+                            Math.random() * (canvas.height - settings.enemySize), 
+                            settings.enemyColor);
+    enemies.push(enemy);
 }
 
 function updateScoreDisplay() {
@@ -41,11 +41,11 @@ function showResetButton() {
 }
 
 function checkWinCondition() {
-    const allBlocksPickedUp = blocks.every(block => {
-        return block.isPickedUp;
+    const allEnemiesShot = enemies.every(enemy => {
+        return enemy.isPickedUp;
     });
 
-    if (allBlocksPickedUp) {
+    if (allEnemiesShot) {
         messageArea.innerHTML = 'Congratulations! You cleared all the enemies!';
         messageArea.classList.add('success');
         messageArea.style.display = 'block';
@@ -91,12 +91,12 @@ function changeBackground() {
 // });
 
 function drawEnemies() {
-    for (const block of blocks) {
-        block.draw();
+    for (const enemy of enemies) {
+        enemy.draw();
 
         // Check for collision with player
-        if (!block.isPickedUp && isCollision(player, block)) {
-            block.isPickedUp = true;
+        if (!enemy.isPickedUp && isCollision(player, enemy)) {
+            enemy.isPickedUp = true;
             score.value += 1;
             updateScoreDisplay();
         }
@@ -104,9 +104,9 @@ function drawEnemies() {
 }
 
 function initEnemies() {
-    // Create initial random blocks
-    for (let i = 0; i < settings.totalBlocks; i++) {
-        createRandomBlock();
+    // Create initial random enemies
+    for (let i = 0; i < settings.totalEnemies; i++) {
+        createRandomEnemies();
     }
 }
 
@@ -124,23 +124,24 @@ function drawProjectiles() {
         ctx.arc(projectile.x, projectile.y, projectile.radius, 0, Math.PI * 2);
         ctx.fill();
 
-        // Check for collision with blocks
-        for (let j = blocks.length - 1; j >= 0; j--) {
-            const block = blocks[j];
+        // Check for collision with enemies
+        for (let j = enemies.length - 1; j >= 0; j--) {
+            const enemy = enemies[j];
 
-            if (!block.isPickedUp && isCollision(projectile, block)) {
-                block.isPickedUp = true;
+            if (!enemy.isPickedUp && isCollision(projectile, enemy)) {
+                enemy.isPickedUp = true;
                 score.value += 1;
                 updateScoreDisplay();
-                // Remove the projectile when it hits a block
+
+                // Remove the projectile when it hits a enemy
                 projectiles.splice(i, 1);
 
-                // Remove the block from the array
-                blocks.splice(j, 1);
+                // Remove the enemy from the array
+                enemies.splice(j, 1);
                 
-                console.log(`Block: Color - ${block.color}, Picked Up - ${block.isPickedUp}`);
+                console.log(`enemy: Color - ${enemy.color}, Picked Up - ${enemy.isPickedUp}`);
             
-                break; // Break the inner loop, as the projectile can only hit one block
+                break; // Break the inner loop, as the projectile can only hit one enemy
             }
         }
 
