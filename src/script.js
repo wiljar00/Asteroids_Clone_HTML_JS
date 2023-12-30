@@ -167,10 +167,7 @@ function drawPlayer() {
     }
 }
 
-//  #########################################   //
-//              Main Game Loop                  //
-//  #########################################   //
-function update() {
+function gameLoop() {
     setupUI();
 
     drawPlayer();
@@ -178,6 +175,13 @@ function update() {
 
     checkWinCondition();
     requestAnimationFrame(update);
+}
+
+//  #########################################   //
+//              Main Game Loop                  //
+//  #########################################   //
+function update() {
+    gameLoop();
 }
 
 //  #########################################   //

@@ -11,7 +11,6 @@ function Player() {
     this.rotation = 0;
 }
 
-// Player class methods
 Player.prototype.shoot = function () {
     if (this.shootingCooldown <= 0) {
         projectiles.push({

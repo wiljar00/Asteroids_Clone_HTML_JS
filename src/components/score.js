@@ -1,5 +1,3 @@
-// score.js
-
 window.score = {
     value: 0,
     x: 20,
