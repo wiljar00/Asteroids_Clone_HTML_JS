@@ -9,6 +9,8 @@ const player = new Player();
 const projectiles = [];
 const enemies = [];
 
+const startGameButton = document.getElementById('startGameButton');
+let gameStarted = false;
 
 function createRandomEnemies() {
     const enemy = new Enemy(Math.random() * (canvas.width - settings.enemySize), 
@@ -48,7 +50,7 @@ function checkWinCondition() {
         messageArea.innerHTML = 'Congratulations! You cleared all the enemies!';
         messageArea.classList.add('success');
         messageArea.style.display = 'block';
-        // showResetButton();
+        showStartButton();
     } 
 }
 
@@ -168,15 +170,21 @@ function drawPlayer() {
     }
 }
 
-let gameStarted = false;
+function showStartButton() {
+    startGameButton.hidden = false;
+}
+
+function hideStartButton() {
+    startGameButton.hidden = true;
+}
+
 function startGame() {
     console.log("button pressed");
-    // console.log(gameStarted);
     gameStarted = true;
+    hideStartButton();
     update();
 }
 
-const startGameButton = document.getElementById('startGameButton');
 startGameButton.addEventListener('click', startGame);
 
 //  #########################################   //
