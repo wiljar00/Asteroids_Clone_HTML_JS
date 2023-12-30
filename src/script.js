@@ -9,6 +9,7 @@ const player = new Player();
 const projectiles = [];
 const enemies = [];
 
+
 function createRandomEnemies() {
     const enemy = new Enemy(Math.random() * (canvas.width - settings.enemySize), 
                             Math.random() * (canvas.height - settings.enemySize), 
@@ -167,9 +168,26 @@ function drawPlayer() {
     }
 }
 
-function gameLoop() {
-    setupUI();
+let gameStarted = false;
+function startGame() {
+    console.log("button pressed");
+    // console.log(gameStarted);
+    gameStarted = true;
+}
 
+
+
+//  #########################################   //
+//              Main Game Loop                  //
+//  #########################################   //
+function update() {
+
+    console.log(gameStarted);
+    if (!gameStarted) {
+        return;
+    }
+    console.log(gameStarted);
+    setupUI();
     drawPlayer();
     drawEnemies();
 
@@ -177,12 +195,9 @@ function gameLoop() {
     requestAnimationFrame(update);
 }
 
-//  #########################################   //
-//              Main Game Loop                  //
-//  #########################################   //
-function update() {
-    gameLoop();
-}
+const startGameButton = document.getElementById('startGameButton');
+
+startGameButton.addEventListener('click', startGame);
 
 //  #########################################   //
 //              Start Game                      //
