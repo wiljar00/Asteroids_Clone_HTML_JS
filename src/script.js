@@ -14,8 +14,7 @@ let gameStarted = false;
 
 function createRandomEnemies() {
     const enemy = new Enemy(Math.random() * (canvas.width - settings.enemySize), 
-                            Math.random() * (canvas.height - settings.enemySize), 
-                            settings.enemyColor);
+                            Math.random() * (canvas.height - settings.enemySize));
     enemies.push(enemy);
 }
 
@@ -139,9 +138,7 @@ function drawProjectiles() {
 
                 // Remove the enemy from the array
                 enemies.splice(j, 1);
-                
-                console.log(`enemy: Color - ${enemy.color}, Picked Up - ${enemy.isHit}`);
-            
+                        
                 break; // Break the inner loop, as the projectile can only hit one enemy
             }
         }
