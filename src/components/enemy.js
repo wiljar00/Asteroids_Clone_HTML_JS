@@ -4,14 +4,13 @@ class Enemy {
         this.y = y;
         this.width = settings.enemySize;
         this.height = settings.enemySize;
-        this.isPickedUp = false;
+        this.isHit = false;
         this.image = new Image();
         this.image.src = settings.enemyImagePath; 
     }
 
     draw() {
-        if (!this.isPickedUp) {
-            // Draw the preloaded image
+        if (!this.isHit) {
             ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
         }
     }

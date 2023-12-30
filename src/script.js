@@ -43,7 +43,7 @@ function showResetButton() {
 
 function checkWinCondition() {
     const allEnemiesShot = enemies.every(enemy => {
-        return enemy.isPickedUp;
+        return enemy.isHit;
     });
 
     if (allEnemiesShot) {
@@ -96,8 +96,8 @@ function drawEnemies() {
         enemy.draw();
 
         // Check for collision with player
-        if (!enemy.isPickedUp && isCollision(player, enemy)) {
-            enemy.isPickedUp = true;
+        if (!enemy.isHit && isCollision(player, enemy)) {
+            enemy.isHit = true;
             score.value += 1;
             updateScoreDisplay();
         }
@@ -129,8 +129,8 @@ function drawProjectiles() {
         for (let j = enemies.length - 1; j >= 0; j--) {
             const enemy = enemies[j];
 
-            if (!enemy.isPickedUp && isCollision(projectile, enemy)) {
-                enemy.isPickedUp = true;
+            if (!enemy.isHit && isCollision(projectile, enemy)) {
+                enemy.isHit = true;
                 score.value += 1;
                 updateScoreDisplay();
 
@@ -140,7 +140,7 @@ function drawProjectiles() {
                 // Remove the enemy from the array
                 enemies.splice(j, 1);
                 
-                console.log(`enemy: Color - ${enemy.color}, Picked Up - ${enemy.isPickedUp}`);
+                console.log(`enemy: Color - ${enemy.color}, Picked Up - ${enemy.isHit}`);
             
                 break; // Break the inner loop, as the projectile can only hit one enemy
             }
