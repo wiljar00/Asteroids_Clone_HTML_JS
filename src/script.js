@@ -173,31 +173,29 @@ function startGame() {
     console.log("button pressed");
     // console.log(gameStarted);
     gameStarted = true;
+    update();
 }
 
-
+const startGameButton = document.getElementById('startGameButton');
+startGameButton.addEventListener('click', startGame);
 
 //  #########################################   //
 //              Main Game Loop                  //
 //  #########################################   //
 function update() {
-
-    console.log(gameStarted);
     if (!gameStarted) {
         return;
     }
-    console.log(gameStarted);
+
     setupUI();
     drawPlayer();
     drawEnemies();
-
     checkWinCondition();
+
     requestAnimationFrame(update);
 }
 
-const startGameButton = document.getElementById('startGameButton');
 
-startGameButton.addEventListener('click', startGame);
 
 //  #########################################   //
 //              Start Game                      //
