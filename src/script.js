@@ -9,7 +9,6 @@ const player = new Player();
 const projectiles = [];
 const enemies = [];
 
-const startGameButton = document.getElementById('startGameButton');
 let gameStarted = false;
 
 function createRandomEnemies() {
@@ -34,10 +33,6 @@ function isCollision(circle, rect) {
     const distanceSquagreen = distanceX * distanceX + distanceY * distanceY;
 
     return distanceSquagreen < (circle.radius * circle.radius);
-}
-
-function showResetButton() {
-    // TODO
 }
 
 function checkWinCondition() {
@@ -104,7 +99,6 @@ function drawEnemies() {
 }
 
 function initEnemies() {
-    // Create initial random enemies
     for (let i = 0; i < settings.totalEnemies; i++) {
         createRandomEnemies();
     }
@@ -176,7 +170,6 @@ function hideStartButton() {
 }
 
 function hideWinningMessage() {
-    // messageArea.hidden = true;
     messageArea.style.display = 'none';
 }
 
