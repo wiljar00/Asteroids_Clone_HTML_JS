@@ -175,10 +175,17 @@ function hideStartButton() {
     startGameButton.hidden = true;
 }
 
+function hideWinningMessage() {
+    // messageArea.hidden = true;
+    messageArea.style.display = 'none';
+}
+
 function startGame() {
-    console.log("button pressed");
     gameStarted = true;
     hideStartButton();
+    hideWinningMessage();
+
+    initEnemies()
     update();
 }
 
@@ -205,5 +212,5 @@ function update() {
 //  #########################################   //
 //              Start Game                      //
 //  #########################################   //
-initEnemies()
+
 update();
