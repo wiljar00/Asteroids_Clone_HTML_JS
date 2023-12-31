@@ -157,8 +157,14 @@ function hideWinningMessage() {
     messageArea.style.display = 'none';
 }
 
+function setEnemyCount() {
+    const enemyCountSelect = document.getElementById('enemyCountSelect');
+    settings.totalEnemies = parseInt(enemyCountSelect.value, 10);
+}
+
 function startGame() {
-    // TODO: make sure settings are reset (ex. projectical velocity keeps increasing)
+    setEnemyCount(); // may need to add additional logic (score updates)
+
     gameStarted = true;
     backgroundMusic.play();
     hideWinningMessage();
@@ -173,6 +179,7 @@ startGameButton.addEventListener('click', startGame);
 //  #########################################   //
 //              Main Game Loop                  //
 //  #########################################   //
+
 function update() {
     if (!gameStarted) {
         return;
@@ -189,5 +196,6 @@ function update() {
 //  #########################################   //
 //              Start Game                      //
 //  #########################################   //
+
 showMainMenu();
 update();
