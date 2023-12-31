@@ -147,20 +147,22 @@ function drawPlayer() {
     }
 }
 
-// function showStartButton() {
-//     startGameButton.hidden = false;
-// }
+function showStartButton() {
+    startGameButton.style.display = 'block';
+}
 
-// function hideStartButton() {
-//     startGameButton.hidden = true;
-// }
+function hideStartButton() {
+    startGameButton.style.display = 'none';
+}
 
 function showMainMenu() {
     mainMenuContainer.style.display = 'block';
+    showStartButton();
 }
 
 function hideMainMenu() {
     mainMenuContainer.style.display = 'none';
+    hideStartButton()
 }
 
 function hideWinningMessage() {

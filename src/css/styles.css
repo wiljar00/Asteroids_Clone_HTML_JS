@@ -22,6 +22,7 @@ canvas {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    display: none;
 }
 
 #mainMenuContainer {
@@ -35,6 +36,7 @@ canvas {
     font-size: 24px;
     border: 2px solid #ffcc00;
     border-radius: 10px;
+    display: none;
 }
 
 #messageArea {
