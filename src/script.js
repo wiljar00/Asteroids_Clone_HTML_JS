@@ -159,6 +159,7 @@ function hideWinningMessage() {
 }
 
 function startGame() {
+    // TODO: make sure settings are reset (ex. projectical velocity keeps increasing)
     gameStarted = true;
     backgroundMusic.play();
     hideWinningMessage();
@@ -170,7 +171,10 @@ function startGame() {
 
 startGameButton.addEventListener('click', startGame);
 
-function gameLoop() {
+//  #########################################   //
+//              Main Game Loop                  //
+//  #########################################   //
+function update() {
     if (!gameStarted) {
         return;
     }
@@ -183,18 +187,10 @@ function gameLoop() {
     requestAnimationFrame(update);
 }
 
-//  #########################################   //
-//              Main Game Loop                  //
-//  #########################################   //
-function update() {
-    // showMainMenu();
-    gameLoop();
-}
-
 
 
 //  #########################################   //
 //              Start Game                      //
 //  #########################################   //
-    showMainMenu();
+showMainMenu();
 update();
