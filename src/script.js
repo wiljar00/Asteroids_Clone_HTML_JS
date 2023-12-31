@@ -65,12 +65,6 @@ function changeBackground() {
     }
 }
 
-// const startGameButton = document.getElementById('startGameButton');
-// startGameButton.addEventListener('click', function () {
-    // const backgroundMusic = document.getElementById('backgroundMusic');
-    // backgroundMusic.muted = false;
-// });
-
 function drawEnemies() {
     for (const enemy of enemies) {
         enemy.draw();
@@ -156,9 +150,7 @@ function showMainMenu() {
 
 function hideMainMenu() {
     mainMenuContainer.style.display = 'none';
-    // mainMenuContainer.hidden = true;
     startGameButton.style.display = 'none';
-    // startGameButton.hidden = true;
 
 }
 
@@ -168,6 +160,7 @@ function hideWinningMessage() {
 
 function startGame() {
     gameStarted = true;
+    backgroundMusic.play();
     hideWinningMessage();
     hideMainMenu();
 
