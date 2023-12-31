@@ -29,7 +29,10 @@
     <div id="gameFrame">
         <canvas id="gameCanvas"></canvas>
         <div id="messageArea"></div>
-        <div id="mainMenu">Start Menu</div>
+        <div id="mainMenuContainer">
+            <!-- Add settings or additional menu items here -->
+            <button id="startGameButton">Start Game</button>
+        </div>
         <img id="backgroundImage" src="../src/assets//backgrounds/space.jpg" alt="Space" style="display: none;">
         <img id="playerImage" src="../src/assets/spaceship.png" alt="Player" style="display: none;">
     </div>
@@ -42,7 +45,6 @@
         Your browser does not support the audio tag.
     </audio>
 -->
-    <button id="startGameButton">Start Game</button> 
 
     <script src="../src/utilities/settings.js"></script>
     <script src="../src/components/player.js"></script>

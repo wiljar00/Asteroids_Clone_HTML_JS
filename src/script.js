@@ -147,12 +147,20 @@ function drawPlayer() {
     }
 }
 
-function showStartButton() {
-    startGameButton.hidden = false;
+// function showStartButton() {
+//     startGameButton.hidden = false;
+// }
+
+// function hideStartButton() {
+//     startGameButton.hidden = true;
+// }
+
+function showMainMenu() {
+    mainMenuContainer.style.display = 'block';
 }
 
-function hideStartButton() {
-    startGameButton.hidden = true;
+function hideMainMenu() {
+    mainMenuContainer.style.display = 'none';
 }
 
 function hideWinningMessage() {
@@ -161,7 +169,7 @@ function hideWinningMessage() {
 
 function startGame() {
     gameStarted = true;
-    hideStartButton();
+    hideMainMenu();
     hideWinningMessage();
 
     initEnemies()
@@ -169,13 +177,6 @@ function startGame() {
 }
 
 startGameButton.addEventListener('click', startGame);
-
-function showMainMenu() {
-    // mainMenu.innerHTML = 'Main Menu';
-    mainMenu.classList.add('success');
-    mainMenu.style.display = 'block';
-    showStartButton();
-}
 
 function gameLoop() {
     if (!gameStarted) {
@@ -194,8 +195,8 @@ function gameLoop() {
 //              Main Game Loop                  //
 //  #########################################   //
 function update() {
-    // gameLoop();
     showMainMenu();
+    gameLoop();
 }
 
 
