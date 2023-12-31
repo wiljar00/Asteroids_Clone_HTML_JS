@@ -44,7 +44,7 @@ function checkWinCondition() {
         messageArea.innerHTML = 'Congratulations! You cleared all the enemies!';
         messageArea.classList.add('success');
         messageArea.style.display = 'block';
-        showStartButton();
+        showMainMenu();
     } 
 }
 
@@ -147,22 +147,19 @@ function drawPlayer() {
     }
 }
 
-function showStartButton() {
-    startGameButton.style.display = 'block';
-}
-
-function hideStartButton() {
-    startGameButton.style.display = 'none';
-}
-
 function showMainMenu() {
     mainMenuContainer.style.display = 'block';
-    showStartButton();
+    mainMenuContainer.hidden = false;
+    startGameButton.style.display = 'block';
+    startGameButton.hidden = false;
 }
 
 function hideMainMenu() {
     mainMenuContainer.style.display = 'none';
-    hideStartButton()
+    // mainMenuContainer.hidden = true;
+    startGameButton.style.display = 'none';
+    // startGameButton.hidden = true;
+
 }
 
 function hideWinningMessage() {
@@ -171,8 +168,8 @@ function hideWinningMessage() {
 
 function startGame() {
     gameStarted = true;
-    hideMainMenu();
     hideWinningMessage();
+    hideMainMenu();
 
     initEnemies()
     update();
@@ -197,7 +194,7 @@ function gameLoop() {
 //              Main Game Loop                  //
 //  #########################################   //
 function update() {
-    showMainMenu();
+    // showMainMenu();
     gameLoop();
 }
 
@@ -206,5 +203,5 @@ function update() {
 //  #########################################   //
 //              Start Game                      //
 //  #########################################   //
-
+    showMainMenu();
 update();
