@@ -1,6 +1,5 @@
 const canvas = document.getElementById('gameCanvas');
-const ctx = canvas.getContext('2d');
-const backgroundImage = document.getElementById('backgroundImage');
+const ctx = gameCanvas.getContext('2d');
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight - 45; // TODO: why does the height need adjustment? Maybe image size?
@@ -12,8 +11,9 @@ const enemies = [];
 let gameStarted = false;
 
 function createRandomEnemies() {
-    const enemy = new Enemy(Math.random() * (canvas.width - settings.enemySize), 
-                            Math.random() * (canvas.height - settings.enemySize));
+    const enemy = new Enemy(
+        Math.random() * (canvas.width - settings.enemySize), 
+        Math.random() * (canvas.height - settings.enemySize));
     enemies.push(enemy);
 }
 
@@ -44,24 +44,23 @@ function checkWinCondition() {
         messageArea.innerHTML = 'Congratulations! You cleared all the enemies!';
         messageArea.classList.add('success');
         messageArea.style.display = 'block';
-        showMainMenu();
+        showMainMenu(); // TODO: decide how to transition between winning message and start menu (maybe reset button)
     } 
 }
 
 function changeBackground() {
-    var select = document.getElementById("backgroundSelect");
-    var selectedOption = select.options[select.selectedIndex].value;
+    let selectedOption = backgroundSelect.options[backgroundSelect.selectedIndex].value;
 
     if (selectedOption === "space") {
-        document.getElementById("backgroundImage").src = "../src/assets/backgrounds/space.jpg";
+        backgroundImage.src = "../src/assets/backgrounds/space.jpg";
     } else if (selectedOption === "cloudy_sky") {
-        document.getElementById("backgroundImage").src = "../src/assets/backgrounds/cloudy_sky.jpg";
+        backgroundImage.src = "../src/assets/backgrounds/cloudy_sky.jpg";
     } else if (selectedOption === "beach") {
-        document.getElementById("backgroundImage").src = "../src/assets/backgrounds/beach.jpg";
+        backgroundImage.src = "../src/assets/backgrounds/beach.jpg";
     } else if (selectedOption === "city") {
-        document.getElementById("backgroundImage").src = "../src/assets/backgrounds/city.jpg";
+        backgroundImage.src = "../src/assets/backgrounds/city.jpg";
     } else if (selectedOption === "grassy_fields") {
-        document.getElementById("backgroundImage").src = "../src/assets/backgrounds/grassy_fields.jpg";
+        backgroundImage.src = "../src/assets/backgrounds/grassy_fields.jpg";
     }
 }
 
@@ -186,8 +185,6 @@ function update() {
 
     requestAnimationFrame(update);
 }
-
-
 
 //  #########################################   //
 //              Start Game                      //
