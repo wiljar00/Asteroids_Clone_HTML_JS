@@ -65,24 +65,10 @@ function changeBackground() {
     }
 }
 
-
-
 // const startGameButton = document.getElementById('startGameButton');
 // startGameButton.addEventListener('click', function () {
     // const backgroundMusic = document.getElementById('backgroundMusic');
-
-    // Unmute the audio
     // backgroundMusic.muted = false;
-
-    // Additional code to start the game can go here
-
-    // Hide the button after the game starts
-    // startGameButton.style.display = 'none';
-
-    // Show the canvas and other game elements
-//     canvas.style.display = 'block';
-//     document.getElementById('backgroundImage').style.display = 'block';
-//     document.getElementById('playerImage').style.display = 'block';
 // });
 
 function drawEnemies() {
@@ -184,6 +170,13 @@ function startGame() {
 
 startGameButton.addEventListener('click', startGame);
 
+function showMainMenu() {
+    // mainMenu.innerHTML = 'Main Menu';
+    mainMenu.classList.add('success');
+    mainMenu.style.display = 'block';
+    showStartButton();
+}
+
 function gameLoop() {
     if (!gameStarted) {
         return;
@@ -201,7 +194,8 @@ function gameLoop() {
 //              Main Game Loop                  //
 //  #########################################   //
 function update() {
-    gameLoop();
+    // gameLoop();
+    showMainMenu();
 }
 
 

@@ -24,6 +24,19 @@ canvas {
     transform: translate(-50%, -50%);
 }
 
+#mainMenu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 25%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    font-size: 24px;
+    border: 2px solid #ffcc00;
+    border-radius: 10px;
+}
+
 #messageArea {
     position: absolute;
     top: 50%;
