@@ -184,10 +184,7 @@ function startGame() {
 
 startGameButton.addEventListener('click', startGame);
 
-//  #########################################   //
-//              Main Game Loop                  //
-//  #########################################   //
-function update() {
+function gameLoop() {
     if (!gameStarted) {
         return;
     }
@@ -198,6 +195,13 @@ function update() {
     checkWinCondition();
 
     requestAnimationFrame(update);
+}
+
+//  #########################################   //
+//              Main Game Loop                  //
+//  #########################################   //
+function update() {
+    gameLoop();
 }
 
 
